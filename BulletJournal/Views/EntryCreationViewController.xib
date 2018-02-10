@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EntryCreationViewController" customModule="BulletJournal" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="365" height="481"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ndA-Hf-siU">
+                    <rect key="frame" x="55.5" y="275" width="255.5" height="29"/>
+                    <segments>
+                        <segment title="Task"/>
+                        <segment title="Event"/>
+                        <segment title="Note"/>
+                    </segments>
+                </segmentedControl>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UJ3-ey-TVR">
+                    <rect key="frame" x="16" y="335" width="48" height="30"/>
+                    <state key="normal" title="Cancel"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R4D-Ys-fby">
+                    <rect key="frame" x="303" y="335" width="46" height="30"/>
+                    <state key="normal" title="Create"/>
+                </button>
+                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="eGd-mO-yIT">
+                    <rect key="frame" x="0.0" y="381" width="365" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="j2Q-c9-KuD"/>
+                    </constraints>
+                    <date key="date" timeIntervalSinceReferenceDate="539992553.45386398">
+                        <!--2018-02-10 21:55:53 +0000-->
+                    </date>
+                </datePicker>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Entry" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZX4-ff-I6M">
+                    <rect key="frame" x="16" y="36" width="333" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fuf-Eg-mGl">
+                    <rect key="frame" x="55" y="73" width="255.5" height="170"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="ndA-Hf-siU" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="2QA-iz-eWZ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="R4D-Ys-fby" secondAttribute="trailing" constant="16" id="4Jy-zG-KHq"/>
+                <constraint firstItem="fuf-Eg-mGl" firstAttribute="top" secondItem="ZX4-ff-I6M" secondAttribute="bottom" constant="16" id="4Sj-IZ-Kdd"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="eGd-mO-yIT" secondAttribute="trailing" id="6iQ-fB-gNb"/>
+                <constraint firstItem="ndA-Hf-siU" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.7" id="Qzg-hr-bCl"/>
+                <constraint firstItem="eGd-mO-yIT" firstAttribute="top" secondItem="UJ3-ey-TVR" secondAttribute="bottom" constant="16" id="RCA-lg-WK7"/>
+                <constraint firstItem="eGd-mO-yIT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="SCI-dA-emT"/>
+                <constraint firstItem="R4D-Ys-fby" firstAttribute="leading" relation="lessThanOrEqual" secondItem="UJ3-ey-TVR" secondAttribute="trailing" constant="255" id="Tch-cI-vod"/>
+                <constraint firstItem="eGd-mO-yIT" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="VOW-5G-jvH"/>
+                <constraint firstItem="UJ3-ey-TVR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Xqi-ub-Khq"/>
+                <constraint firstItem="ZX4-ff-I6M" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="YRl-9Z-Q0B"/>
+                <constraint firstItem="fuf-Eg-mGl" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="iUg-hO-hdZ"/>
+                <constraint firstItem="ndA-Hf-siU" firstAttribute="top" secondItem="fuf-Eg-mGl" secondAttribute="bottom" constant="32" id="lzO-Xz-1nH"/>
+                <constraint firstItem="fuf-Eg-mGl" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.7" id="oXj-0R-pQk"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ZX4-ff-I6M" secondAttribute="trailing" constant="16" id="pR5-U9-Fgk"/>
+                <constraint firstItem="ZX4-ff-I6M" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="sJi-Ka-dEp"/>
+                <constraint firstItem="R4D-Ys-fby" firstAttribute="top" secondItem="ndA-Hf-siU" secondAttribute="bottom" constant="32" id="w02-fV-ZmC"/>
+                <constraint firstItem="eGd-mO-yIT" firstAttribute="top" secondItem="R4D-Ys-fby" secondAttribute="bottom" constant="16" id="ytj-bn-cb0"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="29.5" y="71.5"/>
+        </view>
+        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" id="Oo7-bT-2qD">
+            <rect key="frame" x="0.0" y="0.0" width="365" height="132"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+            <date key="date" timeIntervalSinceReferenceDate="539992461.80932295">
+                <!--2018-02-10 21:54:21 +0000-->
+            </date>
+            <date key="minimumDate" timeIntervalSinceReferenceDate="536497200">
+                <!--2018-01-01 11:00:00 +0000-->
+            </date>
+            <date key="maximumDate" timeIntervalSinceReferenceDate="820407600">
+                <!--2026-12-31 11:00:00 +0000-->
+            </date>
+            <point key="canvasLocation" x="373" y="-113"/>
+        </datePicker>
+    </objects>
+</document>

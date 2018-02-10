@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		62A6B130F403305ADD75DF28 /* Pods_BulletJournal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9CCDA7D750BD4E6B6D82442 /* Pods_BulletJournal.framework */; };
+		9E3C0602202F9F610096EB6F /* EntryCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3C0600202F9F610096EB6F /* EntryCreationViewController.swift */; };
+		9E3C0603202F9F610096EB6F /* EntryCreationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E3C0601202F9F610096EB6F /* EntryCreationViewController.xib */; };
 		9E708394202D3E3A008E8D24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E708393202D3E3A008E8D24 /* AppDelegate.swift */; };
 		9E708399202D3E3A008E8D24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E708397202D3E3A008E8D24 /* Main.storyboard */; };
 		9E70839B202D3E3A008E8D24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E70839A202D3E3A008E8D24 /* Assets.xcassets */; };
@@ -22,6 +24,8 @@
 
 /* Begin PBXFileReference section */
 		4A76BBCFEE16BEC5A9E12E76 /* Pods-BulletJournal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BulletJournal.release.xcconfig"; path = "Pods/Target Support Files/Pods-BulletJournal/Pods-BulletJournal.release.xcconfig"; sourceTree = "<group>"; };
+		9E3C0600202F9F610096EB6F /* EntryCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCreationViewController.swift; sourceTree = "<group>"; };
+		9E3C0601202F9F610096EB6F /* EntryCreationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EntryCreationViewController.xib; sourceTree = "<group>"; };
 		9E708390202D3E3A008E8D24 /* BulletJournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BulletJournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E708393202D3E3A008E8D24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E708398202D3E3A008E8D24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -67,10 +71,19 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		9E3C05FD202F99040096EB6F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9E3C0601202F9F610096EB6F /* EntryCreationViewController.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		9E708387202D3E3A008E8D24 = {
 			isa = PBXGroup;
 			children = (
 				9E708392202D3E3A008E8D24 /* BulletJournal */,
+				9E7083AB202D4FFF008E8D24 /* GoogleService-Info.plist */,
 				9E708391202D3E3A008E8D24 /* Products */,
 				8A9F33058632A6A4B92E35F8 /* Pods */,
 				076DC20238DE120893C7A86F /* Frameworks */,
@@ -89,7 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				9E7083B1202E57AA008E8D24 /* Models */,
-				9E7083AB202D4FFF008E8D24 /* GoogleService-Info.plist */,
+				9E3C05FD202F99040096EB6F /* Views */,
 				9E7083A6202D3E89008E8D24 /* View Controllers */,
 				9E7083A5202D3E78008E8D24 /* Supporting Files */,
 			);
@@ -111,6 +124,7 @@
 		9E7083A6202D3E89008E8D24 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9E3C0600202F9F610096EB6F /* EntryCreationViewController.swift */,
 				9E7083A7202D410F008E8D24 /* LoginViewController.swift */,
 				9E7083AD202D6E7A008E8D24 /* MainViewController.swift */,
 				9E7083AF202E1FA5008E8D24 /* ProfileViewController.swift */,
@@ -189,6 +203,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E3C0603202F9F610096EB6F /* EntryCreationViewController.xib in Resources */,
 				9E70839E202D3E3A008E8D24 /* LaunchScreen.storyboard in Resources */,
 				9E7083AC202D4FFF008E8D24 /* GoogleService-Info.plist in Resources */,
 				9E70839B202D3E3A008E8D24 /* Assets.xcassets in Resources */,
@@ -266,6 +281,7 @@
 				9E7083B0202E1FA5008E8D24 /* ProfileViewController.swift in Sources */,
 				9E708394202D3E3A008E8D24 /* AppDelegate.swift in Sources */,
 				9E7083B5202E57BD008E8D24 /* Entry.swift in Sources */,
+				9E3C0602202F9F610096EB6F /* EntryCreationViewController.swift in Sources */,
 				9E7083AE202D6E7A008E8D24 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
