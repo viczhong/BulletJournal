@@ -16,7 +16,6 @@ class ProfileViewController: UIViewController {
 
     }
 
-
     @IBAction func logoutButtonTapped(_ sender: UIButton) {
         logOut()
     }

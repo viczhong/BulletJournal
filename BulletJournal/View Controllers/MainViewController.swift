@@ -15,14 +15,16 @@ class MainViewController:  UIViewController {
     let dateFormatter = DateFormatter()
     var dateArray = [Date]()
     let today = Date()
-    var yearDict = [String : IndexPath]()
+    var daysDict = [String : IndexPath]() //TODO: Store IndexPaths in yearDict
+    var createEntryView: EntryCreationView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "dateCell")
-                dateFormatter.dateFormat = "MMM d EEE"
+
+        dateFormatter.dateFormat = "MMM d EEE"
         setUpYearView()
     }
 
@@ -58,6 +60,10 @@ class MainViewController:  UIViewController {
         tableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
 
+    @objc func entryCancelPressed(sender:UIButton) {
+        self.createEntryView.removeFromSuperview()
+    }
+
 }
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
@@ -79,18 +85,29 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "dateCell", for: indexPath)
-//        let dateAtIndexPath = dateArray[indexPath.row]
-//        let dateString = dateFormatter.string(from: dateAtIndexPath)
-//
-//        cell.textLabel?.textColor = .black
-//        dateFormatter.dateFormat = "MMM d EEE"
-//
-//        if dateString == dateFormatter.string(from: today) {
-//            cell.textLabel?.textColor = .red
-//        }
+        // Save for later:
+        //        let dateAtIndexPath = dateArray[indexPath.row]
+        //        let dateString = dateFormatter.string(from: dateAtIndexPath)
+        //
+        //        cell.textLabel?.textColor = .black
+        //        dateFormatter.dateFormat = "MMM d EEE"
+        //
+        //        if dateString == dateFormatter.string(from: today) {
+        //            cell.textLabel?.textColor = .red
+        //        }
 
-//        cell.textLabel?.text = dateString
+        //        cell.textLabel?.text = dateString
 
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if self.createEntryView != nil {
+            self.createEntryView.removeFromSuperview()
+        }
+
+        self.createEntryView = EntryCreationView(frame: CGRect(x: ((self.view.frame.width - self.view.frame.width * 0.8) / 2), y: self.view.frame.height * 0.2, width: self.view.frame.width * 0.8, height: 340))
+        self.view.addSubview(createEntryView)
+        self.createEntryView.cancelButton.addTarget(self, action: #selector(entryCancelPressed(sender:)), for: .touchUpInside)
     }
 }
