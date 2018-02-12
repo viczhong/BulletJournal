@@ -186,10 +186,10 @@
             </objects>
             <point key="canvasLocation" x="148" y="-737"/>
         </scene>
-        <!--Profile View Controller-->
+        <!--Settings View Controller-->
         <scene sceneID="LUT-84-gkn">
             <objects>
-                <viewController id="lSr-zM-drK" customClass="ProfileViewController" customModule="BulletJournal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="lSr-zM-drK" customClass="SettingsViewController" customModule="BulletJournal" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ErV-wr-e01">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -201,24 +201,44 @@
                                     <action selector="logoutButtonTapped:" destination="lSr-zM-drK" eventType="touchUpInside" id="h6N-AT-GDN"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pnl-77-28w">
+                                <rect key="frame" x="150" y="80" width="75.5" height="25.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOx-Bx-5So">
+                                <rect key="frame" x="16" y="137.5" width="327" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="eOx-Bx-5So" firstAttribute="leading" secondItem="RH0-4r-VTj" secondAttribute="leading" constant="16" id="1U0-Fp-1ez"/>
+                            <constraint firstItem="Pnl-77-28w" firstAttribute="centerX" secondItem="ErV-wr-e01" secondAttribute="centerX" id="6ZV-Eg-a5J"/>
                             <constraint firstItem="9DD-ON-dD8" firstAttribute="centerX" secondItem="ErV-wr-e01" secondAttribute="centerX" id="73U-1n-mUw"/>
                             <constraint firstItem="RH0-4r-VTj" firstAttribute="bottom" secondItem="9DD-ON-dD8" secondAttribute="bottom" constant="8" id="7Y6-m5-zjl"/>
+                            <constraint firstItem="Pnl-77-28w" firstAttribute="top" secondItem="RH0-4r-VTj" secondAttribute="top" constant="16" id="Ovw-dd-0xS"/>
+                            <constraint firstItem="eOx-Bx-5So" firstAttribute="top" secondItem="Pnl-77-28w" secondAttribute="bottom" constant="32" id="e0k-tB-T4q"/>
+                            <constraint firstItem="RH0-4r-VTj" firstAttribute="trailing" secondItem="eOx-Bx-5So" secondAttribute="trailing" constant="32" id="vwG-Ng-KEp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="RH0-4r-VTj"/>
                     </view>
                     <navigationItem key="navigationItem" id="sYU-j4-Uo6"/>
+                    <connections>
+                        <outlet property="emailLabel" destination="eOx-Bx-5So" id="Nwf-C1-M0j"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sjn-3K-wdH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1689" y="554"/>
         </scene>
-        <!--Main View Controller-->
+        <!--Daily View Controller-->
         <scene sceneID="SOc-77-EPo">
             <objects>
-                <viewController id="Rft-yC-O0L" customClass="MainViewController" customModule="BulletJournal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Rft-yC-O0L" customClass="DailyViewController" customModule="BulletJournal" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sB4-kj-6Db">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

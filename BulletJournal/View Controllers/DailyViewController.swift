@@ -1,5 +1,5 @@
 //
-//  MainViewController.swift
+//  DailyViewController.swift
 //  BulletJournal
 //
 //  Created by Victor Zhong on 2/9/18.
@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
-class MainViewController:  UIViewController {
+class DailyViewController:  UIViewController {
     // MARK: - Outlets and Properties
     @IBOutlet weak var tableView: UITableView!
 
@@ -34,9 +34,10 @@ class MainViewController:  UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "Journal"
+
         databaseReference = Database.database().reference()
         userID = Auth.auth().currentUser?.uid
-        print(userID)
 
         setupCalendarProperties()
         setupUIElements()
@@ -292,7 +293,7 @@ class MainViewController:  UIViewController {
     }
 }
 
-extension MainViewController: UITableViewDelegate, UITableViewDataSource {
+extension DailyViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return dateArray.count
     }

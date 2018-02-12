@@ -1,5 +1,5 @@
 //
-//  ProfileViewController.swift
+//  SettingsViewController.swift
 //  BulletJournal
 //
 //  Created by Victor Zhong on 2/9/18.
@@ -7,13 +7,16 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseAuth
 
-class ProfileViewController: UIViewController {
+class SettingsViewController: UIViewController {
+    @IBOutlet weak var emailLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let signedInEmail = Auth.auth().currentUser?.email!
 
+        emailLabel.text = "Email: \(signedInEmail ?? "your@email.com")"
     }
 
     @IBAction func logoutButtonTapped(_ sender: UIButton) {
@@ -42,9 +45,11 @@ class ProfileViewController: UIViewController {
     func returnToLoginScreen() {
         //Remove user credentials
         UserDefaults.standard.set(nil, forKey: "onboarding")
+
         guard let appDel = UIApplication.shared.delegate as? AppDelegate else { return }
+
         let rootController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "LoginInScreen")
+
         appDel.window?.rootViewController = rootController
     }
-
 }
