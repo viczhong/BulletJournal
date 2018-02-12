@@ -17,44 +17,57 @@ class MainViewController:  UIViewController {
     let calendar = Calendar.current
     let dateFormatter = DateFormatter()
     var dateArray = [Date]()
-    let today = Date()
+    var today: Date!
     var thisYear: Int!
     var createEntryView: EntryCreationView!
     var startDate: Date!
     var indexPathDirectory = [Int : Date]()
-    var daysDict = [Date : [Entry]]() //TODO: Store IndexPaths in yearDict
+    var daysDict = [Date : [Entry]]()
     var entries = [Entry]()
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tryExampleEntry()
         setupCalendarProperties()
+//        tryExampleEntry()
         setupUIElements()
         setUpYearView()
     }
 
     // MARK: Functions and Methods
     func tryExampleEntry() {
-//        if UserDefaults.standard.object(forKey: "Onboarding") == nil {
-            let date = calendar.date(from: DateComponents(year: 2018, month: 2, day: 11, hour: 12))!
-            let entry1 = Entry(id: "1111", date: date, type: .task, state: .active, comment: "Testing Task", starred: false)
-            let entry2 = Entry(id: "1111", date: date, type: .event, state: .active, comment: "Testing Event", starred: true)
-            let entry3 = Entry(id: "1111", date: date, type: .note, state: .active, comment: "Testing Note", starred: false)
-            _ = [entry1, entry2, entry3].map { entries.append($0) }
-//            UserDefaults.standard.set("True", forKey: "Onboarding")
-//        }
+        //        if UserDefaults.standard.object(forKey: "Onboarding") == nil {
+        //        let date = calendar.date(from: DateComponents(year: 2018, month: 2, day: 10, hour: 12))!
+        let entry1 = Entry(id: "0001", date: today, type: .task, state: .active, comment: "This is an active Task!", starred: false)
+        let entry2 = Entry(id: "0002", date: today, type: .task, state: .active, comment: "This is a Task that's important!", starred: true)
+        let entry3 = Entry(id: "0003", date: today, type: .task, state: .done, comment: "This is a finished Task!", starred: false)
+        let entry4 = Entry(id: "0004", date: today, type: .event, state: .active, comment: "This is an Event!", starred: false)
+        let entry5 = Entry(id: "0005", date: today, type: .note, state: .active, comment: "This is a Note of something that happened!", starred: false)
+        let entry6 = Entry(id: "0006", date: today, type: .task, state: .crossed, comment: "This is a Task that we abandoned!", starred: false)
+        _ = [entry1, entry2, entry3, entry4, entry5, entry6].map { entries.append($0) }
+        //            UserDefaults.standard.set("True", forKey: "Onboarding")
+        //        }
     }
 
     func setupCalendarProperties() {
+        let todaysDate = Date()
+        let todaysDateComponents = calendar.dateComponents([.month, .day, .year], from: todaysDate)
+
+        if let year = todaysDateComponents.year,
+            let month = todaysDateComponents.month,
+            let day = todaysDateComponents.day {
+            today = calendar.date(from: DateComponents(year: year, month: month, day: day, hour: 12))
+            thisYear = year
+        }
+
         dateFormatter.dateFormat = "YYYY"
-        thisYear = Int(dateFormatter.string(from: today))!
         title = "\(thisYear!)"
 
         startDate = calendar.date(from: DateComponents(year: thisYear, month: 1, day: 1, hour: 12))!
         dateFormatter.dateFormat = "MMM d EEE"
 
+        tryExampleEntry()
         placeEntries()
     }
 
@@ -64,7 +77,7 @@ class MainViewController:  UIViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "dateCell")
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(zoomToToday))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(setupAndShowEntryCreationPop))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(setupAndShowEntryCreationPopup))
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
@@ -107,7 +120,6 @@ class MainViewController:  UIViewController {
             indexPathDirectory[sectionCounter] = currentDate
         }
 
-
         self.tableView.reloadData()
         zoomToToday()
     }
@@ -131,14 +143,46 @@ class MainViewController:  UIViewController {
         view.endEditing(true)
     }
 
-    @objc func setupAndShowEntryCreationPop() {
+    @objc func setupAndShowEntryCreationPopup() {
+        setUpEntryPopup()
+    }
+
+    func setUpEntryPopup(editEntry entry: Entry? = nil, withDate date: Date? = nil) {
         if self.createEntryView != nil {
             self.createEntryView.removeFromSuperview()
         }
 
-        self.createEntryView = EntryCreationView(frame: CGRect(x: ((self.view.frame.width - self.view.frame.width * 0.8) / 2), y: self.view.frame.height * 0.2, width: self.view.frame.width * 0.8, height: 340))
-        self.view.addSubview(createEntryView)
+        self.createEntryView = EntryCreationView(frame: CGRect(x: ((self.view.frame.width - self.view.frame.width * 0.8) / 2), y: self.view.frame.height * 0.15, width: self.view.frame.width * 0.8, height: 400))
         self.createEntryView.cancelButton.addTarget(self, action: #selector(entryCancelPressed(_:)), for: .touchUpInside)
+
+        if let date = date {
+            // This is if the user tapped from an empty cell
+            self.createEntryView.datePickerView.setDate(date, animated: true)
+            self.createEntryView.createButton.isEnabled = false
+        } else if let entry = entry {
+            // This is for editing the entry
+            self.createEntryView.entryTextField.text = entry.comment
+            self.createEntryView.headlineLabel.text = "Edit Entry"
+            self.createEntryView.datePickerView.setDate(entry.date, animated: true)
+
+            if entry.starred {
+                self.createEntryView.starredSegmentedControl.selectedSegmentIndex = 1
+            }
+
+            switch entry.state {
+            case .active:
+                self.createEntryView.statusSegmentedControl.selectedSegmentIndex = 0
+            case .done:
+                self.createEntryView.statusSegmentedControl.selectedSegmentIndex = 1
+            case .crossed:
+                self.createEntryView.statusSegmentedControl.selectedSegmentIndex = 2
+            }
+        } else {
+            // This is if the user clicked the bar button to add
+            self.createEntryView.createButton.isEnabled = false
+        }
+
+        self.view.addSubview(createEntryView)
     }
 }
 
@@ -149,7 +193,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let dateAtSection = indexPathDirectory[section], let tempDateArray = daysDict[dateAtSection] {
-            return tempDateArray.count
+            return tempDateArray.count + 1
         }
         return 1
     }
@@ -165,55 +209,53 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         var cellString = String()
 
         if let dateAtCell = indexPathDirectory[indexPath.section], let tempDateArray = daysDict[dateAtCell] {
-            let entry = tempDateArray[indexPath.row]
+            if indexPath.row < tempDateArray.count {
+                let entry = tempDateArray[indexPath.row]
 
-            if entry.starred {
-                cellString = "★"
-            } else {
-                cellString = "   "
-            }
-            switch entry.type {
-            case .task:
-                cellString += "• "
-            case .event:
-                cellString += "◦ "
-            case .note:
-                cellString += "- "
-            }
+                if entry.starred {
+                    cellString = "★"
+                } else {
+                    cellString = "   "
+                }
 
-            cellString += "\(tempDateArray[indexPath.row].comment)"
+                switch entry.type {
+                case .task:
+                    switch entry.state {
+                    case .active, .crossed:
+                        cellString += "•  "
+                    case .done:
+                        cellString += "✕ "
+                    }
+                case .event:
+                    cellString += "◦  "
+                case .note:
+                    cellString += "-  "
+                }
+
+                cellString += "\(tempDateArray[indexPath.row].comment)"
+            }
         }
 
         cell.textLabel?.text = cellString
-        // Save for later:
-        //        let dateAtIndexPath = dateArray[indexPath.row]
-        //        let dateString = dateFormatter.string(from: dateAtIndexPath)
-        //
-        //        cell.textLabel?.textColor = .black
-        //        dateFormatter.dateFormat = "MMM d EEE"
-        //
-        //        if dateString == dateFormatter.string(from: today) {
-        //            cell.textLabel?.textColor = .red
-        //        }
-
-        //        cell.textLabel?.text = dateString
 
         return cell
     }
-
-
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
         if let dateAtCell = indexPathDirectory[indexPath.section] {
-           if let tempDateArray = daysDict[dateAtCell] {
-                let entry = tempDateArray[indexPath.row]
-                setupAndShowEntryCreationPop() // Modify to edit
-            } else {
-                setupAndShowEntryCreationPop() // Modify to create
-            }
+            if let tempDateArray = daysDict[dateAtCell] {
+                guard indexPath.row < tempDateArray.count else {
+                    setUpEntryPopup(withDate: dateAtCell)
+                    return
+                }
 
+                let entry = tempDateArray[indexPath.row]
+                setUpEntryPopup(editEntry: entry)
+            } else {
+                setUpEntryPopup(withDate: dateAtCell)
+            }
         }
     }
 }

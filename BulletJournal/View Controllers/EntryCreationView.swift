@@ -14,6 +14,8 @@ class EntryCreationView: UIView {
     @IBOutlet weak var headlineLabel: UILabel!
     @IBOutlet weak var entryTextField: UITextField!
     @IBOutlet weak var entryTypeSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var starredSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var statusSegmentedControl: UISegmentedControl!
     @IBOutlet weak var createButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var datePickerView: UIDatePicker!
@@ -39,7 +41,6 @@ class EntryCreationView: UIView {
             addSubview(contentView)
 
             entryTextField.delegate = self
-            createButton.isEnabled = false
         }
     }
 
