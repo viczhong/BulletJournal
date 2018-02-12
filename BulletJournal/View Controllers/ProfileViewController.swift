@@ -16,7 +16,6 @@ class ProfileViewController: UIViewController {
 
     }
 
-
     @IBAction func logoutButtonTapped(_ sender: UIButton) {
         logOut()
     }
@@ -28,7 +27,6 @@ class ProfileViewController: UIViewController {
 
         do {
             try Auth.auth().signOut()
-            print("signed out: \(defaults.value(forKey: "email") ?? "Signed out"), \(Auth.auth().currentUser?.email ?? "No user")")
 
             let alert = UIAlertController(title: "Signed Out!", message: nil, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default) { [unowned self] (action) in
@@ -43,6 +41,7 @@ class ProfileViewController: UIViewController {
 
     func returnToLoginScreen() {
         //Remove user credentials
+        UserDefaults.standard.set(nil, forKey: "onboarding")
         guard let appDel = UIApplication.shared.delegate as? AppDelegate else { return }
         let rootController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "LoginInScreen")
         appDel.window?.rootViewController = rootController
