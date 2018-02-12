@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EntryCreationView" customModule="BulletJournal" customModuleProvider="target">
+            <connections>
+                <outlet property="cancelButton" destination="UJ3-ey-TVR" id="pTR-0h-WWu"/>
+                <outlet property="contentView" destination="i5M-Pr-FkT" id="iPk-dO-jye"/>
+                <outlet property="createButton" destination="R4D-Ys-fby" id="iMN-Gr-0Nw"/>
+                <outlet property="datePickerView" destination="eGd-mO-yIT" id="IQk-pM-hv9"/>
+                <outlet property="entryTextField" destination="hDK-DB-kbI" id="t3U-Xu-9Bz"/>
+                <outlet property="entryTypeSegmentedControl" destination="ndA-Hf-siU" id="BLj-oo-BkI"/>
+                <outlet property="headlineLabel" destination="ZX4-ff-I6M" id="QNn-jx-FVb"/>
+                <outlet property="starredSegmentedControl" destination="ktZ-xm-Pps" id="d1f-5R-qZe"/>
+                <outlet property="statusSegmentedControl" destination="hIi-mt-hUW" id="IwL-yx-xme"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="365" height="402"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ndA-Hf-siU">
+                    <rect key="frame" x="54.5" y="108" width="255.5" height="29"/>
+                    <segments>
+                        <segment title="Task"/>
+                        <segment title="Event"/>
+                        <segment title="Note"/>
+                    </segments>
+                </segmentedControl>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UJ3-ey-TVR">
+                    <rect key="frame" x="32" y="256" width="48" height="30"/>
+                    <state key="normal" title="Cancel"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R4D-Ys-fby">
+                    <rect key="frame" x="299" y="256" width="34" height="30"/>
+                    <state key="normal" title="Save"/>
+                </button>
+                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="eGd-mO-yIT">
+                    <rect key="frame" x="0.0" y="302" width="365" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="j2Q-c9-KuD"/>
+                    </constraints>
+                    <date key="date" timeIntervalSinceReferenceDate="539992553.45386398">
+                        <!--2018-02-10 21:55:53 +0000-->
+                    </date>
+                    <date key="minimumDate" timeIntervalSinceReferenceDate="536497200">
+                        <!--2018-01-01 11:00:00 +0000-->
+                    </date>
+                    <date key="maximumDate" timeIntervalSinceReferenceDate="631105200">
+                        <!--2020-12-31 11:00:00 +0000-->
+                    </date>
+                </datePicker>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Entry" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZX4-ff-I6M">
+                    <rect key="frame" x="16" y="16" width="333" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter text here!" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hDK-DB-kbI">
+                    <rect key="frame" x="54" y="62" width="255.5" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                </textField>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ktZ-xm-Pps">
+                    <rect key="frame" x="55" y="152" width="255.5" height="29"/>
+                    <segments>
+                        <segment title="☆ Normal"/>
+                        <segment title="★ Priority"/>
+                    </segments>
+                </segmentedControl>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="hIi-mt-hUW">
+                    <rect key="frame" x="55" y="196" width="255.5" height="29"/>
+                    <segments>
+                        <segment title="Active"/>
+                        <segment title="Done"/>
+                        <segment title="Ignored"/>
+                    </segments>
+                </segmentedControl>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="R4D-Ys-fby" secondAttribute="trailing" constant="32" id="4Jy-zG-KHq"/>
+                <constraint firstItem="ndA-Hf-siU" firstAttribute="top" secondItem="hDK-DB-kbI" secondAttribute="bottom" constant="16" id="4Qd-co-5N6"/>
+                <constraint firstItem="ndA-Hf-siU" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="5gP-Sj-fvz"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="eGd-mO-yIT" secondAttribute="trailing" id="6iQ-fB-gNb"/>
+                <constraint firstItem="ktZ-xm-Pps" firstAttribute="top" secondItem="ndA-Hf-siU" secondAttribute="bottom" constant="16" id="9Bf-8k-5FG"/>
+                <constraint firstItem="R4D-Ys-fby" firstAttribute="top" secondItem="hIi-mt-hUW" secondAttribute="bottom" constant="32" id="Bvl-4Y-Ak9"/>
+                <constraint firstItem="hDK-DB-kbI" firstAttribute="top" relation="lessThanOrEqual" secondItem="ZX4-ff-I6M" secondAttribute="bottom" priority="250" constant="32" id="EKc-oz-kcd"/>
+                <constraint firstItem="hIi-mt-hUW" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.7" id="Gd9-4r-hhQ"/>
+                <constraint firstItem="ndA-Hf-siU" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.7" id="OsF-Yz-epJ"/>
+                <constraint firstItem="eGd-mO-yIT" firstAttribute="top" secondItem="UJ3-ey-TVR" secondAttribute="bottom" constant="16" id="RCA-lg-WK7"/>
+                <constraint firstItem="eGd-mO-yIT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="SCI-dA-emT"/>
+                <constraint firstItem="R4D-Ys-fby" firstAttribute="leading" secondItem="UJ3-ey-TVR" secondAttribute="trailing" priority="250" constant="255" id="Tch-cI-vod"/>
+                <constraint firstItem="eGd-mO-yIT" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="VOW-5G-jvH"/>
+                <constraint firstItem="UJ3-ey-TVR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="Xqi-ub-Khq"/>
+                <constraint firstItem="ZX4-ff-I6M" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="YRl-9Z-Q0B"/>
+                <constraint firstItem="hIi-mt-hUW" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ZMQ-25-Ulv"/>
+                <constraint firstItem="ktZ-xm-Pps" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.7" id="a1i-II-98g"/>
+                <constraint firstItem="ktZ-xm-Pps" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="d6q-6i-TCP"/>
+                <constraint firstItem="hDK-DB-kbI" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.7" id="e7a-2E-siE"/>
+                <constraint firstItem="hDK-DB-kbI" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="eR4-S9-WtZ"/>
+                <constraint firstItem="hIi-mt-hUW" firstAttribute="top" secondItem="ktZ-xm-Pps" secondAttribute="bottom" constant="16" id="jQB-Wg-9PL"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ZX4-ff-I6M" secondAttribute="trailing" constant="16" id="pR5-U9-Fgk"/>
+                <constraint firstItem="ZX4-ff-I6M" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="sJi-Ka-dEp"/>
+                <constraint firstItem="eGd-mO-yIT" firstAttribute="top" secondItem="R4D-Ys-fby" secondAttribute="bottom" constant="16" id="ytj-bn-cb0"/>
+                <constraint firstItem="hDK-DB-kbI" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="zSN-i3-hpw"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="-106" y="-51"/>
+        </view>
+    </objects>
+</document>
