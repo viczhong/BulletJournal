@@ -95,29 +95,26 @@ class MainViewController:  UIViewController {
     }
 
     func manipulateEntry(_ edit: Bool) {
+        var key: String!
+
         if edit {
-            databaseReference.child("entries").child(userID).child(entryKey!).removeValue()
+            key = entryKey
             entryKey = nil
+        } else {
+            key = databaseReference.child("entries").child(userID).childByAutoId().key
         }
 
         let cev = createEntryView!
-        let newKey = databaseReference.child("entries").child(userID).childByAutoId().key
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy"
         let date = dateFormatter.string(from: cev.datePickerView.date)
-        
-        //        let targetDateComponents = Calendar.current.dateComponents([.month, .day, .year], from: datePickerView.date)
-        //        var convertedTargetDate: Date?
-        //        if let year = targetDateComponents.year, let month = targetDateComponents.month, let day = targetDateComponents.day {
-        //            convertedTargetDate = Calendar.current.date(from: DateComponents(year: year, month: month, day: day, hour: 12))
-        //        }
         
         if let type = cev.typeSegmentChoices[cev.entryTypeSegmentedControl.selectedSegmentIndex],
             let state = cev.stateSegmentChoices[cev.statusSegmentedControl.selectedSegmentIndex],
             let comment = cev.entryTextField.text,
             let starred = cev.starredSegmentChoices[cev.starredSegmentedControl.selectedSegmentIndex] {
             let newEntry: [String : String] = [
-                "id" : newKey,
+                "id" : key,
                 "date": date,
                 "type": type.rawValue,
                 "state": state.rawValue,
@@ -125,7 +122,8 @@ class MainViewController:  UIViewController {
                 "starred": starred
             ]
 
-            self.databaseReference.child("entries").child(userID).child(newKey).setValue(newEntry)
+            self.databaseReference.child("entries").child(userID).child(key).setValue(newEntry)
+
             self.createEntryView.removeFromSuperview()
             loadDataFromFirebase()
         }

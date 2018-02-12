@@ -284,11 +284,11 @@
             </objects>
             <point key="canvasLocation" x="864" y="-215.8920539730135"/>
         </scene>
-        <!--Options-->
+        <!--Settings-->
         <scene sceneID="80S-Ba-jak">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CLg-lv-uND" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Options" id="VOv-4u-JzJ"/>
+                    <tabBarItem key="tabBarItem" title="Settings" id="VOv-4u-JzJ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dTW-wQ-H6V">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
