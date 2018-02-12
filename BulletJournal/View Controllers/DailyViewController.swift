@@ -362,7 +362,7 @@ extension DailyViewController: UITableViewDelegate, UITableViewDataSource {
         }
 
         if cellString == "" && indexPathDirectory[indexPath.section] == today {
-            let defaultString = "     - Tap to add an entry -"
+            let defaultString = "- Tap to add an entry -"
             let attributeString = NSMutableAttributedString(string: defaultString)
 
             attributeString.addAttributes([NSAttributedStringKey.font : UIFont.italicSystemFont(ofSize: 10), NSAttributedStringKey.foregroundColor : UIColor.lightGray], range: NSMakeRange(0, attributeString.length))
