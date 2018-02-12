@@ -20,6 +20,7 @@
 		9E7083AE202D6E7A008E8D24 /* DailyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7083AD202D6E7A008E8D24 /* DailyViewController.swift */; };
 		9E7083B0202E1FA5008E8D24 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7083AF202E1FA5008E8D24 /* SettingsViewController.swift */; };
 		9E7083B5202E57BD008E8D24 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7083B4202E57BD008E8D24 /* Entry.swift */; };
+		9E8F2EBA203188C800C0C19E /* DailyViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8F2EB9203188C800C0C19E /* DailyViewTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		9E7083AD202D6E7A008E8D24 /* DailyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyViewController.swift; sourceTree = "<group>"; };
 		9E7083AF202E1FA5008E8D24 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9E7083B4202E57BD008E8D24 /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
+		9E8F2EB9203188C800C0C19E /* DailyViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyViewTableViewCell.swift; sourceTree = "<group>"; };
 		A9E85AE6686DDB5E078B745D /* Pods-BulletJournal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BulletJournal.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BulletJournal/Pods-BulletJournal.debug.xcconfig"; sourceTree = "<group>"; };
 		F9CCDA7D750BD4E6B6D82442 /* Pods_BulletJournal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BulletJournal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -125,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				9E7083AD202D6E7A008E8D24 /* DailyViewController.swift */,
+				9E8F2EB9203188C800C0C19E /* DailyViewTableViewCell.swift */,
 				9E3C0604202FA5F80096EB6F /* EntryCreationView.swift */,
 				9E7083A7202D410F008E8D24 /* LoginViewController.swift */,
 				9E7083AF202E1FA5008E8D24 /* SettingsViewController.swift */,
@@ -278,6 +281,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E8F2EBA203188C800C0C19E /* DailyViewTableViewCell.swift in Sources */,
 				9E7083AA202D4153008E8D24 /* SignUpViewController.swift in Sources */,
 				9E7083A8202D410F008E8D24 /* LoginViewController.swift in Sources */,
 				9E7083B0202E1FA5008E8D24 /* SettingsViewController.swift in Sources */,

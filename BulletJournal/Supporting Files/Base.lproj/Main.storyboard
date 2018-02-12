@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -246,6 +247,60 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bDP-O4-G8o">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="dailyCell" rowHeight="97" id="SPN-29-4xs" customClass="DailyViewTableViewCell" customModule="BulletJournal" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="97"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SPN-29-4xs" id="Lb0-EO-sqA">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="96.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="★" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BvS-QG-CD5">
+                                                    <rect key="frame" x="15" y="11" width="15" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="15" id="nSP-Lp-9v1"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="◦" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cSz-8W-ceU">
+                                                    <rect key="frame" x="30" y="11" width="16" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="16" id="hTG-1t-DLb"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text Goes Here!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJQ-xg-jeN">
+                                                    <rect key="frame" x="46" y="11" width="314" height="75"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="lLR-SM-Dwr"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="vJQ-xg-jeN" secondAttribute="trailing" id="RTC-7o-83c"/>
+                                                <constraint firstItem="BvS-QG-CD5" firstAttribute="leading" secondItem="Lb0-EO-sqA" secondAttribute="leadingMargin" id="YCF-SV-UWT"/>
+                                                <constraint firstItem="cSz-8W-ceU" firstAttribute="top" secondItem="Lb0-EO-sqA" secondAttribute="topMargin" id="YCs-yI-RPQ"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="vJQ-xg-jeN" secondAttribute="bottom" id="YjJ-Jv-Qi9"/>
+                                                <constraint firstItem="cSz-8W-ceU" firstAttribute="leading" secondItem="BvS-QG-CD5" secondAttribute="trailing" id="ZYV-Fc-Abg"/>
+                                                <constraint firstItem="BvS-QG-CD5" firstAttribute="top" secondItem="Lb0-EO-sqA" secondAttribute="topMargin" id="dNX-vk-Fbs"/>
+                                                <constraint firstItem="vJQ-xg-jeN" firstAttribute="top" secondItem="Lb0-EO-sqA" secondAttribute="topMargin" id="hTw-tL-ovP"/>
+                                                <constraint firstItem="vJQ-xg-jeN" firstAttribute="leading" secondItem="cSz-8W-ceU" secondAttribute="trailing" id="lVU-Gj-Tcw"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="entryLabel" destination="vJQ-xg-jeN" id="qzx-Nu-sLe"/>
+                                            <outlet property="starLabel" destination="BvS-QG-CD5" id="eAU-cF-wj5"/>
+                                            <outlet property="typeLabel" destination="cSz-8W-ceU" id="jmH-9r-uMD"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                                 <sections/>
                             </tableView>
                         </subviews>
@@ -265,7 +320,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W06-bG-FHq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1690" y="-216"/>
+            <point key="canvasLocation" x="1688.8" y="-216.34182908545728"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ffL-SX-9wq">

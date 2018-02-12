@@ -42,12 +42,12 @@ class DailyViewController:  UIViewController {
         setupCalendarProperties()
         setupUIElements()
         setUpYearView()
-        loadDataFromFirebase()
+        loadDataFromFirebase(true)
     }
 
     // MARK: - Functions and Methods
     // MARK: Database functions
-    func loadDataFromFirebase() {
+    func loadDataFromFirebase(_ firstLoad: Bool = false) {
         databaseReference.child("entries").child(userID).observeSingleEvent(of: .value) { (snapshot) in
             self.entries.removeAll()
 
@@ -83,6 +83,10 @@ class DailyViewController:  UIViewController {
                 self.placeEntries()
             } else {
                 self.onboardingEntries()
+            }
+
+            if firstLoad {
+                self.zoomToToday()
             }
         }
     }
@@ -124,7 +128,6 @@ class DailyViewController:  UIViewController {
             ]
 
             self.databaseReference.child("entries").child(userID).child(key).setValue(newEntry)
-
             self.createEntryView.removeFromSuperview()
             loadDataFromFirebase()
         }
@@ -208,7 +211,8 @@ class DailyViewController:  UIViewController {
     func setupUIElements() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "dateCell")
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 32
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(zoomToToday))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(setupAndShowEntryCreationPopup))
@@ -258,7 +262,6 @@ class DailyViewController:  UIViewController {
         }
 
         self.tableView.reloadData()
-        zoomToToday()
     }
 
     // MARK: QOL functions
@@ -285,7 +288,7 @@ class DailyViewController:  UIViewController {
         let components = self.calendar.dateComponents([.day], from: startDate, to: targetDate).day!
         let indexPath = IndexPath(row: 0, section: components)
 
-        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        tableView.scrollToRow(at: indexPath, at: .top, animated: false)
     }
 
     @objc func dismissKeyboard() {
@@ -313,9 +316,12 @@ extension DailyViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "dateCell", for: indexPath)
-        cell.textLabel?.text = nil
-        cell.textLabel?.attributedText = nil
+        let cell = tableView.dequeueReusableCell(withIdentifier: "dailyCell", for: indexPath) as! DailyViewTableViewCell
+
+        cell.entryLabel.text = nil
+        cell.entryLabel.attributedText = nil
+        cell.starLabel.text = nil
+        cell.typeLabel.text = nil
 
         var cellString = String()
 
@@ -324,23 +330,23 @@ extension DailyViewController: UITableViewDelegate, UITableViewDataSource {
                 let entry = tempDateArray[indexPath.row]
 
                 if entry.starred {
-                    cellString = "★"
+                    cell.starLabel.text = "★"
                 } else {
-                    cellString = "   "
+                    cell.starLabel.text = " "
                 }
 
                 switch entry.type {
                 case .task:
                     switch entry.state {
                     case .active, .crossed:
-                        cellString += "•  "
+                        cell.typeLabel.text = "•"
                     case .done:
-                        cellString += "✕ "
+                        cell.typeLabel.text = "✕"
                     }
                 case .event:
-                    cellString += "◦  "
+                    cell.typeLabel.text = "◦"
                 case .note:
-                    cellString += "-  "
+                    cell.typeLabel.text = "-"
                 }
 
                 cellString += "\(tempDateArray[indexPath.row].comment)"
@@ -348,7 +354,7 @@ extension DailyViewController: UITableViewDelegate, UITableViewDataSource {
                 if entry.state == .crossed {
                     let attributeString = NSMutableAttributedString(string: cellString)
                     attributeString.addAttribute(.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
-                    cell.textLabel?.attributedText = attributeString
+                    cell.entryLabel.attributedText = attributeString
 
                     return cell
                 }
@@ -361,9 +367,9 @@ extension DailyViewController: UITableViewDelegate, UITableViewDataSource {
 
             attributeString.addAttributes([NSAttributedStringKey.font : UIFont.italicSystemFont(ofSize: 10), NSAttributedStringKey.foregroundColor : UIColor.lightGray], range: NSMakeRange(0, attributeString.length))
 
-            cell.textLabel?.attributedText = attributeString
+            cell.entryLabel.attributedText = attributeString
         } else {
-            cell.textLabel?.text = cellString
+            cell.entryLabel.text = cellString
         }
 
         return cell
