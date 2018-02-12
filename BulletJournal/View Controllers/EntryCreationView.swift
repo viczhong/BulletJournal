@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Firebase
-import FirebaseDatabase
 
 class EntryCreationView: UIView {
     // MARK: - Outlets and Properties
@@ -21,9 +19,6 @@ class EntryCreationView: UIView {
     @IBOutlet weak var createButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var datePickerView: UIDatePicker!
-
-    var databaseReference: DatabaseReference!
-    var userID: String!
 
     var typeSegmentChoices: [Int : EntryType] = [
         0 : .task,
@@ -63,45 +58,7 @@ class EntryCreationView: UIView {
             addSubview(contentView)
 
             entryTextField.delegate = self
-
-            databaseReference = Database.database().reference()
-            userID = Auth.auth().currentUser?.uid
         }
-    }
-
-    // MARK: - Functions and Methods
-    @IBAction func createButtonTapped(_ sender: UIButton) {
-        //        let newKey = databaseReference.child("entries").child(userID).childByAutoId().key
-        //        let dateFormatter = DateFormatter()
-        //        dateFormatter.dateFormat = "MM/dd/yyyy"
-        //        let date = dateFormatter.string(from: datePickerView.date)
-        //
-        ////        let targetDateComponents = Calendar.current.dateComponents([.month, .day, .year], from: datePickerView.date)
-        ////        var convertedTargetDate: Date?
-        ////        if let year = targetDateComponents.year, let month = targetDateComponents.month, let day = targetDateComponents.day {
-        ////            convertedTargetDate = Calendar.current.date(from: DateComponents(year: year, month: month, day: day, hour: 12))
-        ////        }
-        //
-        //        if let type = typeSegmentChoices[entryTypeSegmentedControl.selectedSegmentIndex],
-        //            let state = stateSegmentChoices[statusSegmentedControl.selectedSegmentIndex],
-        //            let comment = entryTextField.text,
-        //            let starred = starredSegmentChoices[starredSegmentedControl.selectedSegmentIndex] {
-        //            let newEntry: [String : String] = [
-        //                "id" : newKey,
-        //                "date": date,
-        //                "type": type.rawValue,
-        //                "state": state.rawValue,
-        //                "comment": comment,
-        //                "starred": starred
-        //            ]
-        ////                Entry(id: newKey, date: date, type: type, state: state, comment: comment, starred: starred)
-        //            self.databaseReference.child("entries").child(userID).child(newKey).setValue(newEntry)
-        //        }
-    }
-
-    @IBAction func cancelButtonTapped(_ sender: UIButton) {
-        print("cancel tapped/n/n/n")
-
     }
 }
 

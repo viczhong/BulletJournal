@@ -40,16 +40,10 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UJ3-ey-TVR">
                     <rect key="frame" x="32" y="256" width="48" height="30"/>
                     <state key="normal" title="Cancel"/>
-                    <connections>
-                        <action selector="cancelButtonTapped:" destination="-1" eventType="touchUpInside" id="oVs-MG-8lp"/>
-                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R4D-Ys-fby">
                     <rect key="frame" x="299" y="256" width="34" height="30"/>
                     <state key="normal" title="Save"/>
-                    <connections>
-                        <action selector="createButtonTapped:" destination="-1" eventType="touchUpInside" id="FUp-T1-oQi"/>
-                    </connections>
                 </button>
                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="eGd-mO-yIT">
                     <rect key="frame" x="0.0" y="302" width="365" height="100"/>
