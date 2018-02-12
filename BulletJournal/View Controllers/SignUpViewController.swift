@@ -16,6 +16,8 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var confirmField: UITextField!
     @IBOutlet weak var registerButton: UIButton!
 
+    var keyboardSize: CGRect? = nil
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,6 +29,14 @@ class SignUpViewController: UIViewController {
         emailField.delegate = self
         passwordField.delegate = self
         confirmField.delegate = self
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: .UIKeyboardWillHide, object: nil)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
     }
 
     // MARK: - Functions and Methods
@@ -88,6 +98,28 @@ class SignUpViewController: UIViewController {
 
     @objc func dismissKeyboard() {
         view.endEditing(true)
+    }
+
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if keyboardSize == nil {
+            keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue
+        }
+
+        print("iPhone height: \(self.view.frame.height)")
+
+        if self.view.frame.height <= CGFloat(600) && self.view.frame.origin.y == 0 {
+            if let keyboardSize = keyboardSize {
+                self.view.frame.origin.y -= keyboardSize.height / 3
+            }
+        }
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.height <= CGFloat(600) && self.view.frame.origin.y != 0 {
+            if let keyboardSize = keyboardSize {
+                self.view.frame.origin.y += keyboardSize.height / 3
+            }
+        }
     }
 
     // MARK: Outlet Functions

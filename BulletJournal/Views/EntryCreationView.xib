@@ -19,6 +19,7 @@
                 <outlet property="datePickerView" destination="eGd-mO-yIT" id="IQk-pM-hv9"/>
                 <outlet property="entryTextField" destination="hDK-DB-kbI" id="t3U-Xu-9Bz"/>
                 <outlet property="entryTypeSegmentedControl" destination="ndA-Hf-siU" id="BLj-oo-BkI"/>
+                <outlet property="headlineLabel" destination="ZX4-ff-I6M" id="QNn-jx-FVb"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -69,7 +70,7 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hDK-DB-kbI">
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter text here!" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hDK-DB-kbI">
                     <rect key="frame" x="54.5" y="72" width="255.5" height="30"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>

@@ -11,6 +11,7 @@ import UIKit
 class EntryCreationView: UIView {
     // MARK: - Outlets and Properties
     @IBOutlet var contentView: UIView!
+    @IBOutlet weak var headlineLabel: UILabel!
     @IBOutlet weak var entryTextField: UITextField!
     @IBOutlet weak var entryTypeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var createButton: UIButton!
