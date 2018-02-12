@@ -15,7 +15,7 @@ Use `pod install` in terminal and that should do the trick. Open the `.xcworkspa
 
 | Journal View | Edit View | 
 --- | --- |
-| ![](Images/onboarding.png) | ![](Images/Entry.png) | 
+| ![](Images/Onboarding.png) | ![](Images/Entry.png) | 
 
 
 
