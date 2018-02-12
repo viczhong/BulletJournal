@@ -8,12 +8,18 @@
 
 import UIKit
 import Firebase
+import FirebaseDatabase
 
 class MainViewController:  UIViewController {
     // MARK: - Outlets and Properties
     @IBOutlet weak var tableView: UITableView!
 
-    // Date-related properties
+    //MARK: Database properties
+    var databaseReference: DatabaseReference!
+    var userID: String!
+    var entryKey: String?
+
+    //MARK: Date-related properties
     let calendar = Calendar.current
     let dateFormatter = DateFormatter()
     var dateArray = [Date]()
@@ -25,31 +31,167 @@ class MainViewController:  UIViewController {
     var daysDict = [Date : [Entry]]()
     var entries = [Entry]()
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        databaseReference = Database.database().reference()
+        userID = Auth.auth().currentUser?.uid
+        print(userID)
+
         setupCalendarProperties()
-//        tryExampleEntry()
         setupUIElements()
         setUpYearView()
+        loadDataFromFirebase()
     }
 
-    // MARK: Functions and Methods
-    func tryExampleEntry() {
-        //        if UserDefaults.standard.object(forKey: "Onboarding") == nil {
-        //        let date = calendar.date(from: DateComponents(year: 2018, month: 2, day: 10, hour: 12))!
-        let entry1 = Entry(id: "0001", date: today, type: .task, state: .active, comment: "This is an active Task!", starred: false)
-        let entry2 = Entry(id: "0002", date: today, type: .task, state: .active, comment: "This is a Task that's important!", starred: true)
-        let entry3 = Entry(id: "0003", date: today, type: .task, state: .done, comment: "This is a finished Task!", starred: false)
-        let entry4 = Entry(id: "0004", date: today, type: .event, state: .active, comment: "This is an Event!", starred: false)
-        let entry5 = Entry(id: "0005", date: today, type: .note, state: .active, comment: "This is a Note of something that happened!", starred: false)
-        let entry6 = Entry(id: "0006", date: today, type: .task, state: .crossed, comment: "This is a Task that we abandoned!", starred: false)
-        _ = [entry1, entry2, entry3, entry4, entry5, entry6].map { entries.append($0) }
-        //            UserDefaults.standard.set("True", forKey: "Onboarding")
+    // MARK: - Functions and Methods
+    // MARK: Database functions
+    func loadDataFromFirebase() {
+        databaseReference.child("entries").child(userID).observeSingleEvent(of: .value) { (snapshot) in
+            self.entries.removeAll()
+
+            for child in snapshot.children {
+                if let snap = child as? DataSnapshot,
+                    let valueDict = snap.value as? [String : String],
+                    let dateString = valueDict["date"],
+                    let type = valueDict["type"],
+                    let convertedType = EntryType(rawValue: type),
+                    let state = valueDict["state"],
+                    let convertedState = EntryState(rawValue: state),
+                    let comment = valueDict["comment"],
+                    let starred = valueDict["starred"] {
+
+                    self.dateFormatter.dateFormat = "MM/dd/yyyy"
+                    let dateToConvert = self.dateFormatter.date(from: dateString)!
+
+                    let convertedComponents = self.calendar.dateComponents([.month, .day, .year], from: dateToConvert)
+
+                    guard let year = convertedComponents.year else { return }
+                    guard let month = convertedComponents.month else { return }
+                    guard let day = convertedComponents.day else { return }
+
+                    let convertedDate = self.calendar.date(from: DateComponents(year: year, month: month, day: day, hour: 12))!
+
+                    let entry = Entry(id: snap.key, date: convertedDate, type: convertedType, state: convertedState, comment: comment, starred: Bool(starred)!)
+
+                    self.entries.append(entry)
+                }
+            }
+
+            if self.entries.count > 0 {
+                self.placeEntries()
+            } else {
+                self.onboardingEntries()
+            }
+        }
+    }
+
+    @objc func createEntry() {
+        manipulateEntry(false)
+    }
+
+    @objc func editEntry() {
+        manipulateEntry(true)
+    }
+
+    func manipulateEntry(_ edit: Bool) {
+        if edit {
+            databaseReference.child("entries").child(userID).child(entryKey!).removeValue()
+            entryKey = nil
+        }
+
+        let cev = createEntryView!
+        let newKey = databaseReference.child("entries").child(userID).childByAutoId().key
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        let date = dateFormatter.string(from: cev.datePickerView.date)
+        
+        //        let targetDateComponents = Calendar.current.dateComponents([.month, .day, .year], from: datePickerView.date)
+        //        var convertedTargetDate: Date?
+        //        if let year = targetDateComponents.year, let month = targetDateComponents.month, let day = targetDateComponents.day {
+        //            convertedTargetDate = Calendar.current.date(from: DateComponents(year: year, month: month, day: day, hour: 12))
         //        }
+        
+        if let type = cev.typeSegmentChoices[cev.entryTypeSegmentedControl.selectedSegmentIndex],
+            let state = cev.stateSegmentChoices[cev.statusSegmentedControl.selectedSegmentIndex],
+            let comment = cev.entryTextField.text,
+            let starred = cev.starredSegmentChoices[cev.starredSegmentedControl.selectedSegmentIndex] {
+            let newEntry: [String : String] = [
+                "id" : newKey,
+                "date": date,
+                "type": type.rawValue,
+                "state": state.rawValue,
+                "comment": comment,
+                "starred": starred
+            ]
+
+            self.databaseReference.child("entries").child(userID).child(newKey).setValue(newEntry)
+            self.createEntryView.removeFromSuperview()
+            loadDataFromFirebase()
+        }
     }
 
+    // MARK: Popup-related Functions
+    @objc func setupAndShowEntryCreationPopup() {
+        setUpEntryPopup()
+    }
+
+    @objc func entryCancelPressed(_ sender: UIButton) {
+        self.createEntryView.removeFromSuperview()
+    }
+
+    func setUpEntryPopup(editEntry entry: Entry? = nil, withDate date: Date? = nil) {
+        if self.createEntryView != nil {
+            self.createEntryView.removeFromSuperview()
+        }
+
+        self.createEntryView = EntryCreationView(frame: CGRect(x: ((self.view.frame.width - self.view.frame.width * 0.8) / 2), y: self.view.frame.height * 0.15, width: self.view.frame.width * 0.8, height: 400))
+        self.createEntryView.cancelButton.addTarget(self, action: #selector(entryCancelPressed(_:)), for: .touchUpInside)
+
+        if let date = date {
+            // This is if the user tapped from an empty cell
+            self.createEntryView.datePickerView.setDate(date, animated: true)
+            self.createEntryView.createButton.isEnabled = false
+            self.createEntryView.createButton.addTarget(self, action: #selector(createEntry), for: .touchUpInside)
+        } else if let entry = entry {
+            // This is for editing the entry
+            entryKey = entry.id
+            self.createEntryView.entryTextField.text = entry.comment
+            self.createEntryView.headlineLabel.text = "Edit Entry"
+            self.createEntryView.datePickerView.setDate(entry.date, animated: true)
+            self.createEntryView.createButton.addTarget(self, action: #selector(editEntry), for: .touchUpInside)
+
+            switch entry.type {
+            case .task:
+                self.createEntryView.entryTypeSegmentedControl.selectedSegmentIndex = 0
+            case .event:
+                self.createEntryView.entryTypeSegmentedControl.selectedSegmentIndex = 1
+            case .note:
+                self.createEntryView.entryTypeSegmentedControl.selectedSegmentIndex = 2
+            }
+
+            if entry.starred {
+                self.createEntryView.starredSegmentedControl.selectedSegmentIndex = 1
+            }
+
+            switch entry.state {
+            case .active:
+                self.createEntryView.statusSegmentedControl.selectedSegmentIndex = 0
+            case .done:
+                self.createEntryView.statusSegmentedControl.selectedSegmentIndex = 1
+            case .crossed:
+                self.createEntryView.statusSegmentedControl.selectedSegmentIndex = 2
+            }
+        } else {
+            // This is if the user clicked the bar button to add
+            self.createEntryView.createButton.isEnabled = false
+            self.createEntryView.createButton.addTarget(self, action: #selector(createEntry), for: .touchUpInside)
+        }
+
+        self.view.addSubview(createEntryView)
+    }
+
+    // MARK: Setup Functions
     func setupCalendarProperties() {
         let todaysDate = Date()
         let todaysDateComponents = calendar.dateComponents([.month, .day, .year], from: todaysDate)
@@ -61,14 +203,7 @@ class MainViewController:  UIViewController {
             thisYear = year
         }
 
-        dateFormatter.dateFormat = "YYYY"
-        title = "\(thisYear!)"
-
         startDate = calendar.date(from: DateComponents(year: thisYear, month: 1, day: 1, hour: 12))!
-        dateFormatter.dateFormat = "MMM d EEE"
-
-        tryExampleEntry()
-        placeEntries()
     }
 
     func setupUIElements() {
@@ -85,7 +220,8 @@ class MainViewController:  UIViewController {
     }
 
     func placeEntries() {
-        // REF: daysDict = [Date : [Entry]]()
+        daysDict.removeAll()
+
         for entry in entries {
             var tempEntryArray = [Entry]()
 
@@ -97,6 +233,8 @@ class MainViewController:  UIViewController {
                 daysDict[entry.date] = [entry]
             }
         }
+
+        self.tableView.reloadData()
     }
 
     func setUpYearView() {
@@ -124,6 +262,22 @@ class MainViewController:  UIViewController {
         zoomToToday()
     }
 
+    // MARK: QOL functions
+    func onboardingEntries() {
+        if UserDefaults.standard.object(forKey: "onboarding") == nil {
+            let entry1 = Entry(id: "0001", date: today, type: .task, state: .active, comment: "This is an active Task!", starred: false)
+            let entry2 = Entry(id: "0002", date: today, type: .task, state: .active, comment: "This is a Task that's important!", starred: true)
+            let entry3 = Entry(id: "0003", date: today, type: .task, state: .done, comment: "This is a finished Task!", starred: false)
+            let entry4 = Entry(id: "0004", date: today, type: .event, state: .active, comment: "This is an Event!", starred: false)
+            let entry5 = Entry(id: "0005", date: today, type: .note, state: .active, comment: "This is a Note of something that happened!", starred: false)
+            let entry6 = Entry(id: "0006", date: today, type: .task, state: .crossed, comment: "This is a Task that we abandoned!", starred: false)
+            _ = [entry1, entry2, entry3, entry4, entry5, entry6].map { entries.append($0) }
+            UserDefaults.standard.set("true", forKey: "onboarding")
+        }
+
+        placeEntries()
+    }
+
     @objc func zoomToToday() {
         zoomToDate(startDate, to: today)
     }
@@ -135,54 +289,8 @@ class MainViewController:  UIViewController {
         tableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
 
-    @objc func entryCancelPressed(_ sender:UIButton) {
-        self.createEntryView.removeFromSuperview()
-    }
-
     @objc func dismissKeyboard() {
         view.endEditing(true)
-    }
-
-    @objc func setupAndShowEntryCreationPopup() {
-        setUpEntryPopup()
-    }
-
-    func setUpEntryPopup(editEntry entry: Entry? = nil, withDate date: Date? = nil) {
-        if self.createEntryView != nil {
-            self.createEntryView.removeFromSuperview()
-        }
-
-        self.createEntryView = EntryCreationView(frame: CGRect(x: ((self.view.frame.width - self.view.frame.width * 0.8) / 2), y: self.view.frame.height * 0.15, width: self.view.frame.width * 0.8, height: 400))
-        self.createEntryView.cancelButton.addTarget(self, action: #selector(entryCancelPressed(_:)), for: .touchUpInside)
-
-        if let date = date {
-            // This is if the user tapped from an empty cell
-            self.createEntryView.datePickerView.setDate(date, animated: true)
-            self.createEntryView.createButton.isEnabled = false
-        } else if let entry = entry {
-            // This is for editing the entry
-            self.createEntryView.entryTextField.text = entry.comment
-            self.createEntryView.headlineLabel.text = "Edit Entry"
-            self.createEntryView.datePickerView.setDate(entry.date, animated: true)
-
-            if entry.starred {
-                self.createEntryView.starredSegmentedControl.selectedSegmentIndex = 1
-            }
-
-            switch entry.state {
-            case .active:
-                self.createEntryView.statusSegmentedControl.selectedSegmentIndex = 0
-            case .done:
-                self.createEntryView.statusSegmentedControl.selectedSegmentIndex = 1
-            case .crossed:
-                self.createEntryView.statusSegmentedControl.selectedSegmentIndex = 2
-            }
-        } else {
-            // This is if the user clicked the bar button to add
-            self.createEntryView.createButton.isEnabled = false
-        }
-
-        self.view.addSubview(createEntryView)
     }
 }
 
@@ -200,12 +308,16 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let dateForSection = dateArray[section]
+        dateFormatter.dateFormat = "MMM d E"
         let dateString = dateFormatter.string(from: dateForSection)
         return dateString
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "dateCell", for: indexPath)
+        cell.textLabel?.text = nil
+        cell.textLabel?.attributedText = nil
+
         var cellString = String()
 
         if let dateAtCell = indexPathDirectory[indexPath.section], let tempDateArray = daysDict[dateAtCell] {
@@ -233,10 +345,27 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                 }
 
                 cellString += "\(tempDateArray[indexPath.row].comment)"
+
+                if entry.state == .crossed {
+                    let attributeString = NSMutableAttributedString(string: cellString)
+                    attributeString.addAttribute(.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
+                    cell.textLabel?.attributedText = attributeString
+
+                    return cell
+                }
             }
         }
 
-        cell.textLabel?.text = cellString
+        if cellString == "" && indexPathDirectory[indexPath.section] == today {
+            let defaultString = "     - Tap to add an entry -"
+            let attributeString = NSMutableAttributedString(string: defaultString)
+
+            attributeString.addAttributes([NSAttributedStringKey.font : UIFont.italicSystemFont(ofSize: 10), NSAttributedStringKey.foregroundColor : UIColor.lightGray], range: NSMakeRange(0, attributeString.length))
+
+            cell.textLabel?.attributedText = attributeString
+        } else {
+            cell.textLabel?.text = cellString
+        }
 
         return cell
     }

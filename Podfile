@@ -8,5 +8,6 @@ target 'BulletJournal' do
   # Pods for BulletJournal
   pod 'Firebase', '~> 4.8'
   pod 'FirebaseAuth', '~> 4.4'
+  pod 'FirebaseDatabase', '~> 4.1'
 
 end

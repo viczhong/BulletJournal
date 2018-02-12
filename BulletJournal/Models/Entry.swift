@@ -8,11 +8,11 @@
 
 import Foundation
 
-enum EntryType {
+enum EntryType: String {
     case task, note, event
 }
 
-enum EntryState {
+enum EntryState: String {
     case active, done, crossed
 }
 
