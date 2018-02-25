@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A90883992183714FF51F3B2 /* Pods_BulletJournal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E1757D93947AA376D3E915 /* Pods_BulletJournal.framework */; };
 		9E2C99C920432F6B00777F38 /* EntryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2C99C820432F6B00777F38 /* EntryManager.swift */; };
 		9E3C0603202F9F610096EB6F /* EntryCreationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E3C0601202F9F610096EB6F /* EntryCreationView.xib */; };
 		9E3C0605202FA5F80096EB6F /* EntryCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3C0604202FA5F80096EB6F /* EntryCreationView.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		07E1757D93947AA376D3E915 /* Pods_BulletJournal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BulletJournal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E2C99C820432F6B00777F38 /* EntryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryManager.swift; sourceTree = "<group>"; };
 		9E3C0601202F9F610096EB6F /* EntryCreationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EntryCreationView.xib; sourceTree = "<group>"; };
 		9E3C0604202FA5F80096EB6F /* EntryCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCreationView.swift; sourceTree = "<group>"; };
@@ -40,6 +42,8 @@
 		9E7083AF202E1FA5008E8D24 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9E7083B4202E57BD008E8D24 /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		9E8F2EB9203188C800C0C19E /* DailyViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyViewTableViewCell.swift; sourceTree = "<group>"; };
+		ABA6042527FA51E61C4F8AFA /* Pods-BulletJournal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BulletJournal.release.xcconfig"; path = "Pods/Target Support Files/Pods-BulletJournal/Pods-BulletJournal.release.xcconfig"; sourceTree = "<group>"; };
+		CCC4496C9C03D844981F9A76 /* Pods-BulletJournal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BulletJournal.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BulletJournal/Pods-BulletJournal.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,12 +51,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A90883992183714FF51F3B2 /* Pods_BulletJournal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		77C0E0384702E40622FBE2E8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				07E1757D93947AA376D3E915 /* Pods_BulletJournal.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9E3C05FD202F99040096EB6F /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -67,6 +80,8 @@
 				9E708392202D3E3A008E8D24 /* BulletJournal */,
 				9E7083AB202D4FFF008E8D24 /* GoogleService-Info.plist */,
 				9E708391202D3E3A008E8D24 /* Products */,
+				D6F16B7BB857ECA9DF363021 /* Pods */,
+				77C0E0384702E40622FBE2E8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -123,6 +138,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		D6F16B7BB857ECA9DF363021 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CCC4496C9C03D844981F9A76 /* Pods-BulletJournal.debug.xcconfig */,
+				ABA6042527FA51E61C4F8AFA /* Pods-BulletJournal.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -130,9 +154,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9E7083A2202D3E3A008E8D24 /* Build configuration list for PBXNativeTarget "BulletJournal" */;
 			buildPhases = (
+				BB899FF1E241DDE4AACBB40F /* [CP] Check Pods Manifest.lock */,
 				9E70838C202D3E3A008E8D24 /* Sources */,
 				9E70838D202D3E3A008E8D24 /* Frameworks */,
 				9E70838E202D3E3A008E8D24 /* Resources */,
+				248C51A5A4BD86D27D3F5412 /* [CP] Embed Pods Frameworks */,
+				505B5C50EF0F713D0F95C087 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -191,6 +218,66 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		248C51A5A4BD86D27D3F5412 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BulletJournal/Pods-BulletJournal-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BulletJournal/Pods-BulletJournal-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		505B5C50EF0F713D0F95C087 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BulletJournal/Pods-BulletJournal-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BB899FF1E241DDE4AACBB40F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BulletJournal-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9E70838C202D3E3A008E8D24 /* Sources */ = {
@@ -340,6 +427,7 @@
 		};
 		9E7083A3202D3E3A008E8D24 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CCC4496C9C03D844981F9A76 /* Pods-BulletJournal.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -355,6 +443,7 @@
 		};
 		9E7083A4202D3E3A008E8D24 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ABA6042527FA51E61C4F8AFA /* Pods-BulletJournal.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
