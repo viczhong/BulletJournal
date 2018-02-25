@@ -13,38 +13,17 @@ import FirebaseDatabase
 class DailyViewController:  UIViewController {
     // MARK: - Outlets and Properties
     @IBOutlet weak var tableView: UITableView!
-    
-    //    //MARK: Database properties
-    //    var databaseReference: DatabaseReference!
-    //    var userID: String!
-    //    var entryKey: String?
-    var entryManager: EntryManager!
 
-    //    //MARK: Date-related properties
-    //    let calendar = Calendar.current
+    var entryManager: EntryManager!
     let dateFormatter = DateFormatter()
-    //    var dateArray = [Date]()
-    //    var today: Date!
-    //    var thisYear: Int!
-    //    var createEntryView: EntryCreationView!
-    //    var startDate: Date!
-    //    var indexPathDirectory = [Int : Date]()
-    //    var daysDict = [Date : [Entry]]()
-    //    var entries = [Entry]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "Journal"
         entryManager = EntryManager(view: self.view, tableView: self.tableView)
-        
-        //        databaseReference = Database.database().reference()
-        //        userID = Auth.auth().currentUser?.uid
-        
-        //        setupCalendarProperties()
+
         setupUIElements()
-        //        setUpYearView()
-        //        loadDataFromFirebase(true)
     }
     
     // MARK: - Functions and Methods
