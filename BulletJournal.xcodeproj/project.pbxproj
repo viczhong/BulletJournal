@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		62A6B130F403305ADD75DF28 /* Pods_BulletJournal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9CCDA7D750BD4E6B6D82442 /* Pods_BulletJournal.framework */; };
+		9E2C99C920432F6B00777F38 /* EntryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2C99C820432F6B00777F38 /* EntryManager.swift */; };
 		9E3C0603202F9F610096EB6F /* EntryCreationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E3C0601202F9F610096EB6F /* EntryCreationView.xib */; };
 		9E3C0605202FA5F80096EB6F /* EntryCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3C0604202FA5F80096EB6F /* EntryCreationView.swift */; };
 		9E708394202D3E3A008E8D24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E708393202D3E3A008E8D24 /* AppDelegate.swift */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		4A76BBCFEE16BEC5A9E12E76 /* Pods-BulletJournal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BulletJournal.release.xcconfig"; path = "Pods/Target Support Files/Pods-BulletJournal/Pods-BulletJournal.release.xcconfig"; sourceTree = "<group>"; };
+		9E2C99C820432F6B00777F38 /* EntryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryManager.swift; sourceTree = "<group>"; };
 		9E3C0601202F9F610096EB6F /* EntryCreationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EntryCreationView.xib; sourceTree = "<group>"; };
 		9E3C0604202FA5F80096EB6F /* EntryCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCreationView.swift; sourceTree = "<group>"; };
 		9E708390202D3E3A008E8D24 /* BulletJournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BulletJournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				9E7083B4202E57BD008E8D24 /* Entry.swift */,
+				9E2C99C820432F6B00777F38 /* EntryManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				9E8F2EBA203188C800C0C19E /* DailyViewTableViewCell.swift in Sources */,
 				9E7083AA202D4153008E8D24 /* SignUpViewController.swift in Sources */,
 				9E7083A8202D410F008E8D24 /* LoginViewController.swift in Sources */,
+				9E2C99C920432F6B00777F38 /* EntryManager.swift in Sources */,
 				9E7083B0202E1FA5008E8D24 /* SettingsViewController.swift in Sources */,
 				9E708394202D3E3A008E8D24 /* AppDelegate.swift in Sources */,
 				9E3C0605202FA5F80096EB6F /* EntryCreationView.swift in Sources */,
