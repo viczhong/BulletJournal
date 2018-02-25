@@ -78,7 +78,6 @@
 			isa = PBXGroup;
 			children = (
 				9E708392202D3E3A008E8D24 /* BulletJournal */,
-				9E7083AB202D4FFF008E8D24 /* GoogleService-Info.plist */,
 				9E708391202D3E3A008E8D24 /* Products */,
 				D6F16B7BB857ECA9DF363021 /* Pods */,
 				77C0E0384702E40622FBE2E8 /* Frameworks */,
@@ -109,6 +108,7 @@
 			children = (
 				9E708393202D3E3A008E8D24 /* AppDelegate.swift */,
 				9E70839A202D3E3A008E8D24 /* Assets.xcassets */,
+				9E7083AB202D4FFF008E8D24 /* GoogleService-Info.plist */,
 				9E70839F202D3E3A008E8D24 /* Info.plist */,
 				9E70839C202D3E3A008E8D24 /* LaunchScreen.storyboard */,
 				9E708397202D3E3A008E8D24 /* Main.storyboard */,
