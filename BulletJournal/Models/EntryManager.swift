@@ -30,6 +30,7 @@ class EntryManager {
     var view: UIView!
     var tableView: UITableView!
 
+    // MARK: - Init
     init(view: UIView, tableView: UITableView) {
         self.view = view
         self.tableView = tableView
