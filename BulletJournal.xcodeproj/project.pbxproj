@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		62A6B130F403305ADD75DF28 /* Pods_BulletJournal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9CCDA7D750BD4E6B6D82442 /* Pods_BulletJournal.framework */; };
 		9E2C99C920432F6B00777F38 /* EntryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2C99C820432F6B00777F38 /* EntryManager.swift */; };
 		9E3C0603202F9F610096EB6F /* EntryCreationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E3C0601202F9F610096EB6F /* EntryCreationView.xib */; };
 		9E3C0605202FA5F80096EB6F /* EntryCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3C0604202FA5F80096EB6F /* EntryCreationView.swift */; };
@@ -25,7 +24,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4A76BBCFEE16BEC5A9E12E76 /* Pods-BulletJournal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BulletJournal.release.xcconfig"; path = "Pods/Target Support Files/Pods-BulletJournal/Pods-BulletJournal.release.xcconfig"; sourceTree = "<group>"; };
 		9E2C99C820432F6B00777F38 /* EntryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryManager.swift; sourceTree = "<group>"; };
 		9E3C0601202F9F610096EB6F /* EntryCreationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EntryCreationView.xib; sourceTree = "<group>"; };
 		9E3C0604202FA5F80096EB6F /* EntryCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCreationView.swift; sourceTree = "<group>"; };
@@ -42,8 +40,6 @@
 		9E7083AF202E1FA5008E8D24 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9E7083B4202E57BD008E8D24 /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		9E8F2EB9203188C800C0C19E /* DailyViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyViewTableViewCell.swift; sourceTree = "<group>"; };
-		A9E85AE6686DDB5E078B745D /* Pods-BulletJournal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BulletJournal.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BulletJournal/Pods-BulletJournal.debug.xcconfig"; sourceTree = "<group>"; };
-		F9CCDA7D750BD4E6B6D82442 /* Pods_BulletJournal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BulletJournal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,30 +47,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62A6B130F403305ADD75DF28 /* Pods_BulletJournal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		076DC20238DE120893C7A86F /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				F9CCDA7D750BD4E6B6D82442 /* Pods_BulletJournal.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		8A9F33058632A6A4B92E35F8 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				A9E85AE6686DDB5E078B745D /* Pods-BulletJournal.debug.xcconfig */,
-				4A76BBCFEE16BEC5A9E12E76 /* Pods-BulletJournal.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		9E3C05FD202F99040096EB6F /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -89,8 +67,6 @@
 				9E708392202D3E3A008E8D24 /* BulletJournal */,
 				9E7083AB202D4FFF008E8D24 /* GoogleService-Info.plist */,
 				9E708391202D3E3A008E8D24 /* Products */,
-				8A9F33058632A6A4B92E35F8 /* Pods */,
-				076DC20238DE120893C7A86F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -154,12 +130,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9E7083A2202D3E3A008E8D24 /* Build configuration list for PBXNativeTarget "BulletJournal" */;
 			buildPhases = (
-				7C989A77039637F010284F74 /* [CP] Check Pods Manifest.lock */,
 				9E70838C202D3E3A008E8D24 /* Sources */,
 				9E70838D202D3E3A008E8D24 /* Frameworks */,
 				9E70838E202D3E3A008E8D24 /* Resources */,
-				08E326CF38758BAF47535328 /* [CP] Embed Pods Frameworks */,
-				6E9E072BFCC64619E98FF65F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -218,66 +191,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		08E326CF38758BAF47535328 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-BulletJournal/Pods-BulletJournal-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BulletJournal/Pods-BulletJournal-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6E9E072BFCC64619E98FF65F /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BulletJournal/Pods-BulletJournal-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7C989A77039637F010284F74 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-BulletJournal-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9E70838C202D3E3A008E8D24 /* Sources */ = {
@@ -427,7 +340,6 @@
 		};
 		9E7083A3202D3E3A008E8D24 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A9E85AE6686DDB5E078B745D /* Pods-BulletJournal.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -443,7 +355,6 @@
 		};
 		9E7083A4202D3E3A008E8D24 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4A76BBCFEE16BEC5A9E12E76 /* Pods-BulletJournal.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
