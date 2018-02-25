@@ -1,5 +1,5 @@
 //
-//  EntryController.swift
+//  EntryManager.swift
 //  BulletJournal
 //
 //  Created by Victor Zhong on 2/25/18.
@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 import FirebaseDatabase
 
-class EntryController {
+class EntryManager {
     // MARK: Database properties
     var databaseReference: DatabaseReference!
     var userID: String!
@@ -35,6 +35,9 @@ class EntryController {
         self.tableView = tableView
         self.databaseReference = Database.database().reference()
         self.userID = Auth.auth().currentUser?.uid
+        setupCalendarProperties()
+        setUpYearView()
+        loadDataFromFirebase(true)
     }
 
     // MARK: Database functions
