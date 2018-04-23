@@ -74,6 +74,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		9E3E973D2043AA0100626D8D /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				9E2C99C820432F6B00777F38 /* EntryManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		9E708387202D3E3A008E8D24 = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +103,7 @@
 		9E708392202D3E3A008E8D24 /* BulletJournal */ = {
 			isa = PBXGroup;
 			children = (
+				9E3E973D2043AA0100626D8D /* Managers */,
 				9E7083B1202E57AA008E8D24 /* Models */,
 				9E3C05FD202F99040096EB6F /* Views */,
 				9E7083A6202D3E89008E8D24 /* View Controllers */,
@@ -133,7 +142,6 @@
 			isa = PBXGroup;
 			children = (
 				9E7083B4202E57BD008E8D24 /* Entry.swift */,
-				9E2C99C820432F6B00777F38 /* EntryManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -431,7 +439,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RKDEZ4QK32;
+				DEVELOPMENT_TEAM = 26RHXP32FH;
 				INFOPLIST_FILE = "$(SRCROOT)/BulletJournal/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.viczhong.BulletJournal;
@@ -447,7 +455,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RKDEZ4QK32;
+				DEVELOPMENT_TEAM = 26RHXP32FH;
 				INFOPLIST_FILE = "$(SRCROOT)/BulletJournal/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.viczhong.BulletJournal;
